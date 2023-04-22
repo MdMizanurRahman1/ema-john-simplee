@@ -4,11 +4,17 @@ import logo from '../../images/Logo.svg';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProvider';
 
+
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
 
     const handleLogOut = () => {
-
+        logOut()
+            .then(result => {
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
 
@@ -22,7 +28,7 @@ const Header = () => {
                 <Link to="/login">Login</Link>
                 <Link to="/signup">Sign up</Link>
                 {
-                    user && <span className='header-text'>Welcome{user.email} <button onClick={handleLogOut}>Sign out</button ></span>
+                    user && <span className='header-text'> Welcome {user.email} <button onClick={handleLogOut} > Log out</button ></span>
                 }
             </div>
         </nav>
